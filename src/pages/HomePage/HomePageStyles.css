@@ -1,0 +1,137 @@
+.home-container {
+  color: #d2691e;
+  font-family: "Open Sans", sans-serif;
+  padding-top: 90px;
+}
+
+.home-title {
+  font-family: "Lobster", cursive;
+  text-align: center;
+  margin-top: 24px;
+  font-size: 2.5rem;
+}
+
+.home-subtitle {
+  font-family: "Lobster", cursive;
+  text-align: center;
+  font-size: 1.5rem;
+}
+
+.search-container {
+  margin: 32px auto;
+  border: 1px solid #d19e7a;
+  width: 400px;
+  border-radius: 16px;
+  display: flex;
+  position: relative;
+  justify-content: end;
+  padding: 2px 8px;
+}
+
+.input-search {
+  width: 90%;
+  border: none;
+  color: #d2691e;
+  height: 30px;
+}
+
+.input-search:focus {
+  outline: none;
+}
+
+.search-icon {
+  position: absolute;
+  left: 16px;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+}
+
+::placeholder {
+  color: #d2691e8c;
+}
+
+.cards-container {
+  width: 100vw;
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+.card-item {
+  width: 16rem;
+  position: relative;
+  overflow: hidden;
+  margin: 0 auto 40px 12px;
+}
+
+.card-img-top {
+  transition: 0.2s;
+}
+
+.card-img-top:hover {
+  transform: scale(1.1);
+}
+
+.card-body {
+  background-color: white;
+  color: #d2691e;
+}
+
+.card-title {
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.btn {
+  background-color: #808000;
+  color: white;
+  margin-top: 8px;
+  margin-bottom: 0;
+}
+
+.btn:hover {
+  background-color: #ffa500;
+  color: black;
+}
+
+.categorias {
+  position: absolute;
+  font-weight: 700;
+  top: 4px;
+  left: 4px;
+  font-size: 14px;
+  background-color: white;
+  padding: 2px 8px;
+  border-radius: 12px;
+  z-index: 20;
+  color: black;
+}
+
+.chef {
+  margin-top: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+/* Naranja Cálido: #FFA500
+Verde Oliva: #808000
+Rojo Tomate: #FF6347
+Amarillo Maíz: #FFD700
+Azul Cielo: #87CEEB
+Verde Salvia: #8FBC8F
+Marrón Chocolate: #D2691E
+Blanco Crema: #FFF8DC */
+
+/* 
+font-family: 'Lobster', cursive;
+font-family: 'Montserrat', sans-serif;
+font-family: 'Open Sans', sans-serif;
+font-family: 'Playfair Display', serif;
+font-family: 'Roboto', sans-serif;
+font-family: 'Work Sans', sans-serif; 
+*/

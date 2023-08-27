@@ -1,0 +1,101 @@
+.image {
+  width: 260px;
+  height: 90px;
+  position: absolute;
+  left: 0;
+  cursor: pointer;
+}
+
+.nav-bar {
+  background-color: #fcf3d0;
+  box-shadow: 4px 0px 8px rgba(0, 0, 0, 0.384);
+  font-family: "Open Sans", sans-serif;
+  position: fixed;
+  width: 100%;
+  top: 0;
+}
+
+.nav-content {
+  width: 100%;
+  max-width: 1300px;
+  margin: 0 auto;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 90px;
+}
+
+.active {
+  font-weight: 600;
+}
+
+.nav-links {
+  text-decoration: none;
+  color: #d2691e;
+  font-size: 0.9rem;
+  transition: 0.2s;
+  text-transform: uppercase;
+}
+
+.nav-links-container {
+  display: flex;
+}
+
+.nav-link-container {
+  margin-right: 24px;
+  padding-bottom: 8px;
+  box-sizing: border-box;
+  transition: 0.1s;
+  height: 30px;
+}
+
+.nav-link-container:hover {
+  border-bottom: 2px solid #d2691e;
+}
+
+.user-information {
+  display: flex;
+  position: absolute;
+  right: 0;
+  align-items: center;
+}
+
+.profile-imagen {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.user-name {
+  margin: 0 12px 0 0;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s;
+  font-size: 0.9rem;
+  color: #d2691e;
+  text-transform: uppercase;
+}
+
+.user-name:hover {
+  transform: scale(1.05);
+}
+
+/* Naranja Cálido: #FFA500
+Verde Oliva: #808000
+Rojo Tomate: #FF6347
+Amarillo Maíz: #FFD700
+Azul Cielo: #87CEEB
+Verde Salvia: #8FBC8F
+Marrón Chocolate: #D2691E
+Blanco Crema: #FFF8DC */
+
+/* 
+font-family: 'Lobster', cursive;
+font-family: 'Montserrat', sans-serif;
+font-family: 'Open Sans', sans-serif;
+font-family: 'Playfair Display', serif;
+font-family: 'Roboto', sans-serif;
+font-family: 'Work Sans', sans-serif; 
+*/

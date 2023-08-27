@@ -1,0 +1,76 @@
+.text-color {
+  color: #d2691e;
+}
+
+.register-container {
+  background-color: #fff8dc;
+  height: 100vh;
+  width: 100vw;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.register-form {
+  width: 350px;
+  height: auto;
+  background-color: white;
+  border: 1px solid rgb(228, 220, 220);
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.google-button {
+  width: auto;
+  display: flex;
+  border: 1px solid rgb(228, 220, 220);
+  padding: 8px;
+  border-radius: 10px;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.google-button:hover {
+  background-color: #0b5ed7;
+  color: white;
+}
+
+.google-icon {
+  width: 30px;
+  height: 30px;
+  margin-right: 16px;
+}
+
+.title-register {
+  text-align: center;
+  margin-bottom: 16px;
+  font-family: "Lobster", cursive;
+  font-size: 1.7rem;
+}
+
+.link-cadastro {
+  text-decoration: none;
+}
+
+.link-cadastro:hover {
+  text-decoration: underline;
+}
+
+.mais-deliciosas-text {
+  color: #d2691e;
+}
+
+/* Naranja Cálido: #FFA500
+  Verde Oliva: #808000
+  Rojo Tomate: #FF6347
+  Amarillo Maíz: #FFD700
+  Azul Cielo: #87CEEB
+  Verde Salvia: #8FBC8F
+  Marrón Chocolate: #D2691E
+  Blanco Crema: #FFF8DC */
