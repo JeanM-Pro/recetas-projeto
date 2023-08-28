@@ -6,7 +6,7 @@ export const LoginPage = ({ setIsAuth }) => {
   const navigate = useNavigate();
   const login = () => {
     setIsAuth(true);
-    navigate("/");
+    navigate("/home");
   };
   return (
     <div className="login-container ">

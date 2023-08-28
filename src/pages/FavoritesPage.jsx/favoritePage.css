@@ -1,66 +1,21 @@
-.home-container {
+.favorites-container {
   color: #d2691e;
   font-family: "Open Sans", sans-serif;
   padding-top: 90px;
   width: 100vw;
 }
 
-.home-title {
+.favorites-title {
   font-family: "Lobster", cursive;
   text-align: center;
   margin-top: 24px;
   font-size: 2.5rem;
 }
 
-.home-subtitle {
+.favorites-subtitle {
   font-family: "Lobster", cursive;
   text-align: center;
   font-size: 1.5rem;
-}
-
-.search-container {
-  margin: 32px auto;
-  border: 1px solid #d19e7a;
-  width: 400px;
-  border-radius: 16px;
-  display: flex;
-  position: relative;
-  justify-content: end;
-  padding: 2px 8px;
-}
-
-.input-search {
-  width: 90%;
-  border: none;
-  color: #d2691e;
-  height: 30px;
-}
-
-.input-search:focus {
-  outline: none;
-}
-
-.search-icon {
-  position: absolute;
-  left: 16px;
-  top: 0;
-  bottom: 0;
-  margin: auto;
-}
-
-::placeholder {
-  color: #d2691e8c;
-}
-
-.cards-container {
-  width: 74rem;
-  max-width: 1300px;
-  margin: 0 auto;
-  padding: 16px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  box-sizing: border-box;
 }
 
 /* Naranja Cálido: #FFA500

@@ -1,15 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import "./HomePageStyles.css";
-import StarRatings from "react-star-ratings";
+
 import { Navbar } from "../../components/NavBar/Navbar";
+import { Card } from "../../components/Card/Card";
 
 export const HomePage = () => {
-  const [rating, setRating] = useState(2);
-
-  const changeRating = (newRating, name) => {
-    setRating(newRating);
-  };
-
   return (
     <>
       <Navbar />
@@ -39,31 +34,12 @@ export const HomePage = () => {
         </div>
 
         <div className="cards-container">
-          <div className="card card-item">
-            <p className="categorias">Almoços</p>
-            <img
-              src="https://elsabor.com.ec/wp-content/uploads/2022/02/arroz-pollo.jpg"
-              className="card-img-top"
-              alt="arrox con pollo"
-            />
-            <div className="card-body">
-              <h5 className="card-title">Arroz con pollo</h5>
-              <p className="chef">Chef: Maria Perez</p>
-              <div className="stars-container">
-                <StarRatings
-                  rating={rating}
-                  starRatedColor="orange"
-                  changeRating={changeRating}
-                  numberOfStars={5}
-                  name="rating"
-                  starDimension="28px"
-                  starHoverColor="orange"
-                />
-              </div>
-
-              <p className="btn">Ver receita</p>
-            </div>
-          </div>
+          <Card />
+          <Card />
+          <Card />
+          <Card />
+          <Card />
+          <Card />
         </div>
       </div>
     </>

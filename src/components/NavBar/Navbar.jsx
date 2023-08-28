@@ -5,7 +5,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 export const Navbar = () => {
   const navigate = useNavigate();
   const goToHome = () => {
-    navigate("/");
+    navigate("/home");
   };
   const goToProfilePage = () => {
     navigate("/perfil");
@@ -22,7 +22,7 @@ export const Navbar = () => {
 
         <div className="nav-links-container">
           <div className="nav-link-container">
-            <NavLink to="/" className="nav-links" activeclassname="active">
+            <NavLink to="/home" className="nav-links" activeclassname="active">
               Início
             </NavLink>
           </div>

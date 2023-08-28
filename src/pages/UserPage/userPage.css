@@ -1,0 +1,78 @@
+.perfil-container {
+  color: #d2691e;
+  font-family: "Open Sans", sans-serif;
+  padding-top: 90px;
+}
+
+.title-user {
+  font-family: "Lobster", cursive;
+  text-align: center;
+  margin-top: 24px;
+  font-size: 2.5rem;
+}
+
+.user-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  font-family: "Lobster", cursive;
+}
+
+.profile-image {
+  width: 100%;
+  max-width: 250px;
+  height: auto;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.username-profile {
+  font-size: 2rem;
+
+  margin-top: 0.5rem;
+}
+
+.email-profile {
+  opacity: 0.8;
+}
+
+.puntuacion-perfil {
+  font-size: 3rem;
+  margin-top: 1rem;
+}
+
+.social-media-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 1.5rem;
+}
+
+.social-media-icon {
+  margin-right: 16px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.social-media-icon:hover {
+  transform: scale(1.1);
+}
+
+/* Naranja Cálido: #FFA500
+Verde Oliva: #808000
+Rojo Tomate: #FF6347
+Amarillo Maíz: #FFD700
+Azul Cielo: #87CEEB
+Verde Salvia: #8FBC8F
+Marrón Chocolate: #D2691E
+Blanco Crema: #FFF8DC */
+
+/* 
+font-family: 'Lobster', cursive;
+font-family: 'Montserrat', sans-serif;
+font-family: 'Open Sans', sans-serif;
+font-family: 'Playfair Display', serif;
+font-family: 'Roboto', sans-serif;
+font-family: 'Work Sans', sans-serif; 
+*/

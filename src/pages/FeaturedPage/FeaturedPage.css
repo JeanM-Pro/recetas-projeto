@@ -1,5 +1,93 @@
 .featured-container {
+  color: #d2691e;
+  font-family: "Open Sans", sans-serif;
   padding-top: 90px;
+}
+
+.title-featured {
+  font-family: "Lobster", cursive;
+  text-align: center;
+  margin-top: 24px;
+  font-size: 2.5rem;
+}
+
+.featured-subtitle {
+  font-family: "Lobster", cursive;
+  text-align: center;
+  font-size: 1.5rem;
+}
+
+.cards-container-featured {
+  width: 100vw;
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+.chefs-container {
+  padding: 0 16px;
+}
+
+.cards-container-destacados {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  padding-left: 40px;
+}
+
+.chefs-title {
+  font-family: "Lobster", cursive;
+  text-align: center;
+  font-size: 1.8rem;
+}
+
+.chef-card-container {
+  width: 100%;
+  display: flex;
+  border: #ffa500 solid 1px;
+  padding: 4px 8px;
+  box-sizing: border-box;
+  border-radius: 12px;
+  background-color: #ffa60034;
+  cursor: pointer;
+  transition: 0.2s;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.521);
+  margin-top: 16px;
+}
+
+.chef-card-container:hover {
+  transform: scale(1.03);
+}
+
+.chef-imagen-card {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  flex: none;
+}
+
+.name-points-container {
+  width: 100%;
+  padding-left: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.chef-name-card {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: black;
+}
+
+.points-chef-card {
+  margin: 0;
+  font-weight: 500;
+  color: black;
 }
 
 /* Naranja Cálido: #FFA500

@@ -13,14 +13,14 @@ export const AppRouter = () => {
     <>
       {isAuth ? (
         <Routes>
-          <Route path="/" element={<HomePage />} />
+          <Route path="/home" element={<HomePage />} />
           <Route path="/favorites" element={<FavoritesPage />} />
           <Route path="/featured" element={<FeaturedPage />} />
           <Route path="/perfil" element={<UserPage />} />
         </Routes>
       ) : (
         <Routes>
-          <Route path="/login" element={<LoginPage setIsAuth={setIsAuth} />} />
+          <Route path="/" element={<LoginPage setIsAuth={setIsAuth} />} />
           <Route path="/register" element={<RegisterPage />} />
         </Routes>
       )}
