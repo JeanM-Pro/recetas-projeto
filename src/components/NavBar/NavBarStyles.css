@@ -62,9 +62,16 @@
   align-items: center;
 }
 
-.profile-imagen {
+.profile-imagen-navabar-container {
   width: 60px;
   height: 60px;
+  overflow: hidden;
+}
+
+.profile-imagen-navabar {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
   border-radius: 50%;
   cursor: pointer;
 }

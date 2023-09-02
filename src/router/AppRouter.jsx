@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import { HomePage } from "../pages/HomePage/HomePage";
 import { FavoritesPage } from "../pages/FavoritesPage.jsx/FavoritesPage";
@@ -6,22 +6,44 @@ import { LoginPage } from "../pages/LoginPage/LoginPage";
 import { RegisterPage } from "../pages/RegisterPage/RegisterPage";
 import { FeaturedPage } from "../pages/FeaturedPage/FeaturedPage";
 import { UserPage } from "../pages/UserPage/UserPage";
+import { auth } from "../firebaseConfig/firebase";
 
 export const AppRouter = () => {
-  const [isAuth, setIsAuth] = useState(false);
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((authUser) => {
+      if (authUser) {
+        setUser(authUser);
+      } else {
+        setUser(null);
+      }
+    });
+
+    return () => {
+      unsubscribe();
+    };
+  }, []);
+
   return (
     <>
-      {isAuth ? (
+      {user ? (
         <Routes>
-          <Route path="/home" element={<HomePage />} />
+          <Route path="/home" element={<HomePage setUser={setUser} />} />
           <Route path="/favorites" element={<FavoritesPage />} />
           <Route path="/featured" element={<FeaturedPage />} />
           <Route path="/perfil" element={<UserPage />} />
         </Routes>
       ) : (
         <Routes>
-          <Route path="/" element={<LoginPage setIsAuth={setIsAuth} />} />
-          <Route path="/register" element={<RegisterPage />} />
+          <Route
+            path="/"
+            element={<LoginPage setUser={setUser} user={user} />}
+          />
+          <Route
+            path="/register"
+            element={<RegisterPage setUser={setUser} user={user} />}
+          />
         </Routes>
       )}
     </>

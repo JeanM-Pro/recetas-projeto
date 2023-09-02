@@ -1,8 +1,10 @@
 import React from "react";
 import "./NavBarStyles.css";
 import { NavLink, useNavigate } from "react-router-dom";
+import { auth } from "../../firebaseConfig/firebase";
 
 export const Navbar = () => {
+  const user = auth.currentUser;
   const navigate = useNavigate();
   const goToHome = () => {
     navigate("/home");
@@ -56,14 +58,16 @@ export const Navbar = () => {
         </div>
         <div className="user-information">
           <p onClick={goToProfilePage} className="user-name">
-            Jean Centeno
+            {user.displayName}
           </p>
-          <img
-            src="https://png.pngtree.com/png-vector/20190704/ourlarge/pngtree-businessman-user-avatar-free-vector-png-image_1538405.jpg"
-            alt="imagen de perfil"
-            className="profile-imagen"
-            onClick={goToProfilePage}
-          />
+          <div className="profile-imagen-navabar-container">
+            <img
+              src={user.photoURL}
+              alt="imagen de perfil"
+              className="profile-imagen-navabar"
+              onClick={goToProfilePage}
+            />
+          </div>
         </div>
       </div>
     </nav>

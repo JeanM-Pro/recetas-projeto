@@ -36,6 +36,29 @@
   transition: 0.2s;
 }
 
+.btn-2 {
+  background-color: #0b5ed7;
+  margin-top: 16px;
+  width: 70px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+}
+
+.google-button-isSubmiting {
+  width: 90%;
+  display: flex;
+  border: 1px solid rgb(228, 220, 220);
+  padding: 8px;
+  border-radius: 10px;
+  align-items: center;
+  justify-content: center;
+  transition: 0.2s;
+  background-color: #0b5ed7;
+}
+
 .google-button:hover {
   background-color: #0b5ed7;
   color: white;

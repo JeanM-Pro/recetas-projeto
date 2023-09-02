@@ -1,13 +1,73 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./loginPageStyles.css";
 import { NavLink, useNavigate } from "react-router-dom";
+import { auth } from "../../firebaseConfig/firebase";
+import {
+  GoogleAuthProvider,
+  signInWithPopup,
+  onAuthStateChanged,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
+import MoonLoader from "react-spinners/MoonLoader";
 
-export const LoginPage = ({ setIsAuth }) => {
+export const LoginPage = ({ setUser, user }) => {
   const navigate = useNavigate();
-  const login = () => {
-    setIsAuth(true);
-    navigate("/home");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmittingWithEmail, setIsSubmittingWithemail] = useState(false);
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setUser(user);
+        navigate("/home");
+      } else {
+        setUser(null);
+      }
+    });
+
+    return () => unsubscribe();
+  }, [navigate, setUser]);
+
+  const handleLoginWithEmailPassword = async () => {
+    try {
+      setIsSubmittingWithemail(true);
+      setError(null);
+      const userCredential = await signInWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      setUser(userCredential.user);
+      navigate("/home");
+    } catch (error) {
+      setError(error.message);
+    } finally {
+      setIsSubmittingWithemail(false);
+    }
   };
+
+  const handleLoginWithGoogle = async () => {
+    const provider = new GoogleAuthProvider();
+
+    try {
+      setIsSubmitting(true);
+      await signInWithPopup(auth, provider);
+      setIsSubmitting(false);
+    } catch (error) {
+      console.error("Error al iniciar sesión con Google:", error);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  if (user) {
+    return navigate("/home");
+  }
+
   return (
     <div className="login-container ">
       <h5 className="title-login">
@@ -35,6 +95,7 @@ export const LoginPage = ({ setIsAuth }) => {
               placeholder="E-mail"
               aria-label="Username"
               aria-describedby="addon-wrapping"
+              onChange={(e) => setEmail(e.target.value)}
             />
           </div>
           <div className="input-group flex-nowrap mt-3">
@@ -56,24 +117,40 @@ export const LoginPage = ({ setIsAuth }) => {
               placeholder="Senha"
               aria-label="Username"
               aria-describedby="addon-wrapping"
+              onChange={(e) => setPassword(e.target.value)}
             />
           </div>
           <button
-            onClick={login}
             type="button"
-            className="btn btn-primary mt-3"
+            className={isSubmittingWithEmail ? "btn-2" : "btn btn-primary mt-3"}
+            onClick={handleLoginWithEmailPassword}
+            disabled={isSubmittingWithEmail}
           >
-            Enviar
+            {isSubmittingWithEmail ? (
+              <MoonLoader size={20} color="#ffffff" />
+            ) : (
+              "Enviar"
+            )}
           </button>
           <p className="mt-1">ou</p>
-          <div className="google-button">
-            <img
-              src="https://static-00.iconduck.com/assets.00/google-icon-2048x2048-czn3g8x8.png"
-              alt="google icon"
-              className="google-icon"
-            />
-
-            <span>Inicia sessão com o Google</span>
+          <div
+            className={
+              isSubmitting ? "google-button-isSubmiting" : "google-button"
+            }
+            onClick={isSubmitting ? null : handleLoginWithGoogle}
+          >
+            {isSubmitting ? (
+              <MoonLoader size={20} color="#ffffff" />
+            ) : (
+              <>
+                <img
+                  src="https://static-00.iconduck.com/assets.00/google-icon-2048x2048-czn3g8x8.png"
+                  alt="google icon"
+                  className="google-icon"
+                />
+                <span>Inicia sessão com o Google</span>
+              </>
+            )}
           </div>
 
           <p className="register-text mt-3 text-sm">

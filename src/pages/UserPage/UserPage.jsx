@@ -1,23 +1,238 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Navbar } from "../../components/NavBar/Navbar";
 import "./userPage.css";
 import { Card } from "../../components/Card/Card";
+import { auth } from "../../firebaseConfig/firebase";
+import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import { updateProfile } from "firebase/auth";
+import { AddReceitaForm } from "./components/AddReceitaForm";
 
 export const UserPage = () => {
+  const [showModalImagen, setShowModalImagen] = useState(false);
+  const [selectedFile, setSelectedFile] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [recipeData, setRecipeData] = useState({
+    title: "",
+    category: "Desayuno",
+    image: null,
+    ingredients: "",
+    steps: "",
+    duration: "",
+    durationUnit: "minutos",
+  });
+  const [receitas, setReceitas] = useState([]);
+  const user = auth.currentUser;
+  console.log(recipeData);
+
+  const formData = new FormData();
+  formData.append("image", recipeData.image);
+  formData.append("title", recipeData.title);
+  formData.append("category", recipeData.category);
+  formData.append("ingredients", recipeData.ingredients);
+  formData.append("steps", recipeData.steps);
+  formData.append("duration", recipeData.duration);
+  formData.append("durationUnit", recipeData.durationUnit);
+
+  //  Trae todoas las recetas
+  useEffect(() => {
+    fetch("http://localhost:80/api/receitas")
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Error al obtener las recetas");
+        }
+        return response.json();
+      })
+      .then((data) => setReceitas(data))
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  }, [setReceitas]);
+
+  console.log(receitas);
+
+  // Poner Primera letra de cada nombre en mayuscula
+
+  const newName = (name) => {
+    const originalName = name.split(" ");
+    const nameUpper = originalName.map((p) => {
+      return p.charAt(0).toUpperCase() + p.slice(1);
+    });
+    return nameUpper.join(" ");
+  };
+
+  // Editar Imagen de Perfil
+
+  const handleFileInputChange = (e) => {
+    const file = e.target.files[0];
+    setSelectedFile(file);
+
+    if (file) {
+      const objectURL = URL.createObjectURL(file);
+      const imgElement = document.querySelector(".preview-image");
+      imgElement.src = objectURL;
+    }
+  };
+
+  const uploadImageToFirebase = async () => {
+    if (selectedFile) {
+      try {
+        const storage = getStorage();
+
+        const storageRef = ref(storage, `images/${selectedFile.name}`);
+
+        await uploadBytes(storageRef, selectedFile);
+
+        const downloadURL = await getDownloadURL(storageRef);
+
+        if (user) {
+          await updateProfile(user, {
+            photoURL: downloadURL,
+          });
+          console.log("photoURL actualizada con éxito");
+        }
+
+        setShowModalImagen(false);
+      } catch (error) {
+        console.error("Error al cargar la imagen:", error);
+      }
+    }
+  };
+
+  // Agregar Receta
+
+  const openModal = () => {
+    setIsModalOpen(true);
+    console.log("abierto");
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setSelectedFile(null);
+    setRecipeData({
+      title: "",
+      category: "Desayuno",
+      image: null,
+      ingredients: "",
+      steps: "",
+      duration: "",
+      durationUnit: "minutos",
+    });
+  };
+
+  const submitForm = async (e) => {
+    const newFormData = {
+      image: formData.get("image"),
+      title: formData.get("title"),
+      category: formData.get("category"),
+      ingredients: formData.get("ingredients"),
+      steps: formData.get("steps"),
+      duration: formData.get("duration"),
+      durationUnit: formData.get("durationUnit"),
+    };
+
+    console.log(newFormData);
+    e.preventDefault();
+
+    try {
+      const response = await fetch("http://localhost:80/api/receitas", {
+        method: "POST",
+        body: newFormData,
+      });
+
+      if (response.ok) {
+        closeModal();
+      } else {
+        const errorMessage = await response.text();
+        console.error("Error al guardar la receta en el backend", errorMessage);
+      }
+    } catch (error) {
+      console.error("Error al enviar la solicitud al backend", error);
+    }
+  };
+
   return (
     <div className="perfil-container">
       <Navbar />
+      {showModalImagen ? (
+        <div className="modal-image-container">
+          <div className="img-modal-container">
+            <div className="img-perfil-preview-container">
+              <img
+                src={selectedFile ? URL.createObjectURL(selectedFile) : ""}
+                alt="Vista Previa de la Imagen"
+                className="preview-image"
+              />
+            </div>
+            <div>
+              <input
+                type="file"
+                id="fileInput"
+                accept="image/*"
+                className="input-imagen"
+                onChange={handleFileInputChange}
+              />
+              <button className="subir-imagen" onClick={uploadImageToFirebase}>
+                Enviar Imagem
+              </button>
+              <button onClick={() => setShowModalImagen(false)}>Fechar</button>
+            </div>
+          </div>
+        </div>
+      ) : null}
+
+      <div className="add-receita-container" onClick={openModal}>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="30"
+          height="30"
+          fillRule="currentColor"
+          className="bi bi-plus-circle plus-icon"
+          viewBox="0 0 16 16"
+        >
+          <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+          <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+        </svg>
+      </div>
+
+      {isModalOpen && (
+        <AddReceitaForm
+          submitForm={submitForm}
+          recipeData={recipeData}
+          setRecipeData={setRecipeData}
+          closeModal={closeModal}
+        />
+      )}
 
       <div className="cards-container-featured row">
         <h1 className="title-user">Suas receitas</h1>
         <div className="col-3 user-container">
-          <img
-            src="https://static.vecteezy.com/ti/vetor-gratis/p3/18838223-avatar-de-um-personagem-de-chef-gratis-vetor.jpg"
-            alt=""
-            className="profile-image"
-          />
-          <span className="username-profile">Jean Centeno</span>
-          <span className="email-profile">jeancenteno54@gmail.com</span>
+          <div className="profile-image-container">
+            <img
+              src={user.photoURL}
+              alt="profile imagen"
+              className="profile-image"
+            />
+            <div className="svg-container">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                fillRule="currentColor"
+                className="bi bi-pencil-square edit-icon"
+                viewBox="0 0 16 16"
+                onClick={() => setShowModalImagen(true)}
+              >
+                <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+                <path
+                  fillRule="evenodd"
+                  d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"
+                />
+              </svg>
+            </div>
+          </div>
+
+          <span className="username-profile">{newName(user.displayName)}</span>
+          <span className="email-profile">{user.email}</span>
 
           <span className="puntuacion-perfil">7/10</span>
           <span>Pontuação média</span>

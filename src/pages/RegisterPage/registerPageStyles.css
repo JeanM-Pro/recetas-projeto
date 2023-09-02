@@ -66,6 +66,15 @@
   color: #d2691e;
 }
 
+.error-message {
+  color: red;
+  font-size: 12px;
+  margin-top: 5px;
+  position: absolute;
+  top: -20px;
+  z-index: 20;
+}
+
 /* Naranja Cálido: #FFA500
   Verde Oliva: #808000
   Rojo Tomate: #FF6347
