@@ -1,24 +1,25 @@
-import MoonLoader from "react-spinners/MoonLoader";
+import { MoonLoader } from "react-spinners";
 
-export const AddReceitaForm = ({
+export const ModalEdit = ({
   submitForm,
-  recipeData,
-  setRecipeData,
+  editedRecipeData,
+  setEditedRecipeData,
   closeModal,
-  setImgReceita,
-  imgReceita,
-  isAddingReceita,
+  isEditing,
+  receita,
+  imgNueva,
+  setImgNueva,
 }) => {
   return (
     <div className="modal-add-receita-container">
       <div className="modal-content">
-        <h2>Adicionar Receita</h2>
+        <h2>Editar Receita</h2>
         <form
           onSubmit={submitForm}
           className="form-group"
           encType="multipart/form-data"
-          method="post"
-          action="/api/receitas"
+          method="PUT"
+          action={`/api/receitas/${editedRecipeData.id}`}
         >
           <label className="label-add-receita-form" htmlFor="image">
             Imagem:
@@ -28,31 +29,30 @@ export const AddReceitaForm = ({
             id="img"
             name="img"
             accept="img/*"
-            onChange={(e) => setImgReceita(e.target.files[0])}
-            required
-            disabled={isAddingReceita}
+            onChange={(e) => setImgNueva(e.target.files[0])}
           />
-          {imgReceita && (
-            <img
-              src={URL.createObjectURL(imgReceita)}
-              alt="Imagen de vista previa"
-              className="img-add-receita-form"
-            />
-          )}
+
+          <img
+            src={imgNueva ? URL.createObjectURL(imgNueva) : receita.img}
+            alt="Imagen de vista previa"
+            className="img-add-receita-form"
+          />
 
           <label className="label-add-receita-form" htmlFor="title">
             Nome da Receita:
           </label>
           <input
-            disabled={isAddingReceita}
             required
             className="input-text"
             type="text"
             id="title"
             name="title"
-            value={recipeData.title}
+            value={editedRecipeData.title}
             onChange={(e) =>
-              setRecipeData({ ...recipeData, title: e.target.value })
+              setEditedRecipeData({
+                ...editedRecipeData,
+                title: e.target.value,
+              })
             }
           />
 
@@ -60,13 +60,15 @@ export const AddReceitaForm = ({
             Categoria:
           </label>
           <select
-            disabled={isAddingReceita}
             className="input-select"
             id="category"
             name="category"
-            value={recipeData.category}
+            value={editedRecipeData.category}
             onChange={(e) =>
-              setRecipeData({ ...recipeData, category: e.target.value })
+              setEditedRecipeData({
+                ...editedRecipeData,
+                category: e.target.value,
+              })
             }
           >
             <option value="Café da Manhã">Café da Manhã</option>
@@ -80,14 +82,16 @@ export const AddReceitaForm = ({
             <span className="instruction">(separe com vírgulas)</span>
           </label>
           <textarea
-            disabled={isAddingReceita}
             required
             id="ingredients"
             className="textarea-add-receita"
             name="ingredients"
-            value={recipeData.ingredients}
+            value={editedRecipeData.ingredients}
             onChange={(e) =>
-              setRecipeData({ ...recipeData, ingredients: e.target.value })
+              setEditedRecipeData({
+                ...editedRecipeData,
+                ingredients: e.target.value,
+              })
             }
           />
 
@@ -95,14 +99,16 @@ export const AddReceitaForm = ({
             Passos: <span className="instruction">(separe com vírgulas)</span>
           </label>
           <textarea
-            disabled={isAddingReceita}
             required
             className="textarea-add-receita"
             id="steps"
             name="steps"
-            value={recipeData.steps}
+            value={editedRecipeData.steps}
             onChange={(e) =>
-              setRecipeData({ ...recipeData, steps: e.target.value })
+              setEditedRecipeData({
+                ...editedRecipeData,
+                steps: e.target.value,
+              })
             }
           />
 
@@ -110,24 +116,28 @@ export const AddReceitaForm = ({
             Duração:
           </label>
           <input
-            disabled={isAddingReceita}
             required
             className="input-text"
             type="number"
             id="duration"
             name="duration"
-            value={recipeData.duration}
+            value={editedRecipeData.duration}
             onChange={(e) =>
-              setRecipeData({ ...recipeData, duration: e.target.value })
+              setEditedRecipeData({
+                ...editedRecipeData,
+                duration: e.target.value,
+              })
             }
           />
           <select
-            disabled={isAddingReceita}
             id="durationUnit"
             name="durationUnit"
-            value={recipeData.durationUnit}
+            value={editedRecipeData.durationUnit}
             onChange={(e) =>
-              setRecipeData({ ...recipeData, durationUnit: e.target.value })
+              setEditedRecipeData({
+                ...editedRecipeData,
+                durationUnit: e.target.value,
+              })
             }
           >
             <option value="minutos">minutos</option>
@@ -135,18 +145,18 @@ export const AddReceitaForm = ({
           </select>
           <div className="buttons-container">
             <button
-              disabled={isAddingReceita}
+              disabled={isEditing}
               className="button-submit-add"
               type="submit"
             >
-              {isAddingReceita ? (
+              {isEditing ? (
                 <MoonLoader size={20} color="#ffffff" />
               ) : (
-                "Adicionar Receita"
+                "Guardar Edición"
               )}
             </button>
             <button
-              disabled={isAddingReceita}
+              disabled={isEditing}
               className="button-close-modal"
               onClick={closeModal}
             >

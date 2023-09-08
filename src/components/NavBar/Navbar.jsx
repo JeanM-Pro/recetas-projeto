@@ -15,12 +15,9 @@ export const Navbar = () => {
   return (
     <nav className="navbar navbar-expand-lg nav-bar">
       <div className="nav-content">
-        <img
-          src="https://i.ibb.co/h83RXnL/logo-sabor.png"
-          className="image"
-          alt="logo"
-          onClick={goToHome}
-        />
+        <h2 onClick={goToHome} className="logo-navbar">
+          SaborGourmet
+        </h2>
 
         <div className="nav-links-container">
           <div className="nav-link-container">
@@ -62,7 +59,11 @@ export const Navbar = () => {
           </p>
           <div className="profile-imagen-navabar-container">
             <img
-              src={user.photoURL}
+              src={
+                user?.photoURL
+                  ? user?.photoURL
+                  : "https://i.ibb.co/3crnvk2/1077114.jpg"
+              }
               alt="imagen de perfil"
               className="profile-imagen-navabar"
               onClick={goToProfilePage}

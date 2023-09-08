@@ -1,14 +1,17 @@
-.image {
-  width: 260px;
-  height: 90px;
+.logo-navbar {
   position: absolute;
-  left: 0;
+  left: 16px;
+  font-family: "Mrs Saint Delafield", cursive;
+  font-size: 4rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: white;
   cursor: pointer;
 }
 
 .nav-bar {
-  background-color: #fcf3d0;
-  box-shadow: 4px 0px 8px rgba(0, 0, 0, 0.384);
+  background-color: #00000079;
+  box-shadow: 4px 0px 8px rgba(255, 255, 255, 0.384);
   font-family: "Open Sans", sans-serif;
   position: fixed;
   width: 100%;
@@ -31,16 +34,21 @@
   font-weight: 600;
 }
 
+.nav-links-container {
+  display: flex;
+}
+
 .nav-links {
   text-decoration: none;
-  color: #d2691e;
+  color: #ffffff;
   font-size: 0.9rem;
   transition: 0.2s;
   text-transform: uppercase;
+  opacity: 0.7;
 }
 
-.nav-links-container {
-  display: flex;
+.nav-links:hover {
+  opacity: 1;
 }
 
 .nav-link-container {
@@ -52,7 +60,7 @@
 }
 
 .nav-link-container:hover {
-  border-bottom: 2px solid #d2691e;
+  border-bottom: 2px solid #a6eaf3;
 }
 
 .user-information {
@@ -82,7 +90,7 @@
   cursor: pointer;
   transition: 0.2s;
   font-size: 0.9rem;
-  color: #d2691e;
+  color: #ffffff;
   text-transform: uppercase;
 }
 

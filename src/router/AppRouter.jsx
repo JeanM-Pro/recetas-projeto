@@ -7,6 +7,7 @@ import { RegisterPage } from "../pages/RegisterPage/RegisterPage";
 import { FeaturedPage } from "../pages/FeaturedPage/FeaturedPage";
 import { UserPage } from "../pages/UserPage/UserPage";
 import { auth } from "../firebaseConfig/firebase";
+import UserProfile from "../components/UserProfile/UserProfile";
 
 export const AppRouter = () => {
   const [user, setUser] = useState(null);
@@ -33,6 +34,7 @@ export const AppRouter = () => {
           <Route path="/favorites" element={<FavoritesPage />} />
           <Route path="/featured" element={<FeaturedPage />} />
           <Route path="/perfil" element={<UserPage />} />
+          <Route path="/user-profile/:userId" element={<UserProfile />} />
         </Routes>
       ) : (
         <Routes>

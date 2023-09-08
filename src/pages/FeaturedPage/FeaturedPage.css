@@ -1,20 +1,39 @@
+.header-background-destacados {
+  background-image: url("https://i.ibb.co/wQDjFZ3/3899dfe821816fbcb3db3e3b23f81585-XL.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  height: 70vh;
+  max-height: 400px;
+  position: fixed;
+  z-index: -10;
+}
+
 .featured-container {
-  color: #d2691e;
+  color: #ffffff;
   font-family: "Open Sans", sans-serif;
-  padding-top: 90px;
+  padding-top: 25vh;
+  width: 100%;
 }
 
 .title-featured {
-  font-family: "Lobster", cursive;
+  font-family: "Mrs Saint Delafield", cursive;
   text-align: center;
   margin-top: 24px;
-  font-size: 2.5rem;
+  font-size: 4rem;
+}
+
+.body-featured {
+  color: black;
+  background-color: rgb(255, 255, 255);
+  padding-top: 32px;
+  margin-top: 140px;
 }
 
 .featured-subtitle {
-  font-family: "Lobster", cursive;
+  font-family: "Mrs Saint Delafield", cursive;
   text-align: center;
-  font-size: 1.5rem;
+  font-size: 3.3rem;
 }
 
 .cards-container-featured {
@@ -28,14 +47,20 @@
 }
 
 .chefs-container {
-  padding: 0 16px;
+  padding: 40px 16px 16px 16px;
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.582);
+  position: relative;
+  border-radius: 8px;
 }
 
 .cards-container-destacados {
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
-  padding-left: 40px;
+  padding: 40px 16px 16px 16px;
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.582);
+  position: relative;
+  border-radius: 8px;
 }
 
 .chefs-title {
@@ -47,11 +72,9 @@
 .chef-card-container {
   width: 100%;
   display: flex;
-  border: #ffa500 solid 1px;
   padding: 4px 8px;
   box-sizing: border-box;
-  border-radius: 12px;
-  background-color: #ffa60034;
+  border-radius: 8px;
   cursor: pointer;
   transition: 0.2s;
   box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.521);

@@ -1,16 +1,34 @@
+.header-background-userpage {
+  background-image: url("https://i.ibb.co/kM72S9W/Mia-By-Carlo-Cracco-01-2018.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  width: 100%;
+  height: 70vh;
+  max-height: 400px;
+  position: fixed;
+  z-index: -10;
+}
+
 .perfil-container {
-  color: #d2691e;
+  color: #ffffff;
   font-family: "Open Sans", sans-serif;
-  padding-top: 90px;
-  background-color: black;
-  position: relative;
+  padding-top: 25vh;
+  width: 100%;
 }
 
 .title-user {
-  font-family: "Lobster", cursive;
+  font-family: "Mrs Saint Delafield", cursive;
   text-align: center;
   margin-top: 24px;
-  font-size: 2.5rem;
+  font-size: 4rem;
+}
+
+.body-user {
+  color: black;
+  background-color: rgb(255, 255, 255);
+  padding-top: 32px;
+  margin-top: 140px;
 }
 
 .user-container {
@@ -18,12 +36,16 @@
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  font-family: "Lobster", cursive;
+  position: relative;
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.582);
+  border-radius: 8px;
+  padding: 16px;
 }
 
 .profile-image-container {
   position: relative;
   color: black;
+  margin-top: 48px;
 }
 
 .profile-image {
@@ -32,6 +54,7 @@
   object-fit: cover;
   border-radius: 50%;
   margin: 0 auto;
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.582);
 }
 
 .svg-container {
@@ -52,11 +75,23 @@
   position: absolute;
   z-index: 30;
   width: 100%;
-  height: 100%;
+  height: 120%;
   background-color: rgba(0, 0, 0, 0.863);
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.buttons-container-modal-edit {
+  color: black;
+  width: 100%;
+}
+
+.buttons-modal-edit-image-container {
+  margin-top: 16px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
 }
 
 .img-modal-container {
@@ -92,18 +127,20 @@
 }
 
 .username-profile {
-  font-size: 2rem;
-
+  font-size: 3.3rem;
+  font-family: "Mrs Saint Delafield", cursive;
   margin-top: 0.5rem;
 }
 
 .email-profile {
-  opacity: 0.8;
+  opacity: 0.5;
+  font-weight: 600;
 }
 
 .puntuacion-perfil {
   font-size: 3rem;
-  margin-top: 1rem;
+  margin: 16px 0 0 0;
+  font-family: "Mrs Saint Delafield", cursive;
 }
 
 .social-media-container {
@@ -117,19 +154,20 @@
   margin-right: 16px;
   cursor: pointer;
   transition: 0.2s;
-  color: #d2691e;
+  color: rgba(0, 0, 0, 0.664);
 }
 
 .social-media-icon:hover {
   transform: scale(1.1);
+  color: black;
 }
 
 .add-receita-container {
   position: fixed;
-  top: 520px;
+  bottom: 32px;
   right: 20px;
   z-index: 30;
-  background-color: #87ceeb;
+  background-color: #36322d;
   padding: 8px;
   border-radius: 8px;
   cursor: pointer;
@@ -168,6 +206,7 @@
   width: 600px;
   height: 96%;
   overflow-y: auto;
+  color: black;
 }
 
 .form-group {
@@ -200,7 +239,7 @@
   border: 1px solid #ccc;
 }
 
-textarea {
+.textarea-add-receita {
   width: 100%;
   padding: 10px;
   border: 1px solid #ccc;
@@ -225,6 +264,9 @@ textarea {
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .button-submit-add:hover {
@@ -240,14 +282,19 @@ textarea {
   cursor: pointer;
 }
 
-button:hover {
+.button-close-modal:hover {
   background-color: #999;
 }
 
-img {
+.img-add-receita-form {
   max-width: 100%;
   height: auto;
   margin-top: 10px;
+}
+
+.instruction {
+  font-size: 12px;
+  font-weight: lighter;
 }
 
 /* Naranja Cálido: #FFA500

@@ -1,38 +1,57 @@
+.header-background {
+  background-image: url("https://i.ibb.co/k6FPK7L/fondo-home2.jpg");
+  width: 100%;
+  height: 70vh;
+  max-height: 400px;
+  position: fixed;
+  z-index: -10;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 .home-container {
-  color: #d2691e;
+  color: #ffffff;
   font-family: "Open Sans", sans-serif;
-  padding-top: 90px;
+  padding-top: 25vh;
   width: 100%;
 }
 
 .home-title {
-  font-family: "Lobster", cursive;
+  font-family: "Mrs Saint Delafield", cursive;
   text-align: center;
   margin-top: 24px;
-  font-size: 2.5rem;
+  font-size: 4rem;
+}
+
+.body-home {
+  color: black;
+  background-color: rgb(255, 255, 255);
+  padding-top: 32px;
+  margin-top: 140px;
 }
 
 .home-subtitle {
-  font-family: "Lobster", cursive;
+  font-family: "Mrs Saint Delafield", cursive;
   text-align: center;
-  font-size: 1.5rem;
+  font-size: 3rem;
 }
 
 .search-container {
   margin: 32px auto;
-  border: 1px solid #d19e7a;
+  border: 1px solid #05050585;
   width: 400px;
   border-radius: 16px;
   display: flex;
   position: relative;
   justify-content: end;
   padding: 2px 8px;
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.514);
 }
 
 .input-search {
   width: 90%;
   border: none;
-  color: #d2691e;
+  color: #000000;
   height: 30px;
 }
 
@@ -49,25 +68,42 @@
 }
 
 ::placeholder {
-  color: #d2691e8c;
+  color: #504f4e8c;
 }
 
 .cards-container {
-  width: 74rem;
+  position: relative;
+  width: 90%;
   max-width: 1300px;
   margin: 0 auto;
-  padding: 16px;
+  padding: 56px 16px 16px 16px;
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
   box-sizing: border-box;
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.582);
+  border-radius: 8px 8px 0 0;
+}
+
+.recetas-header {
+  left: 0;
+  top: 0;
+  position: absolute;
+  width: 100%;
+  background-color: #3f3f3f;
+  color: white;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  padding-left: 16px;
+  border-radius: 8px 8px 0 0;
 }
 
 .logout-container {
   position: fixed;
   bottom: 24px;
   left: 24px;
-  background-color: #808000;
+  background-color: #3f3f3f;
   display: flex;
   justify-content: center;
   align-items: center;
