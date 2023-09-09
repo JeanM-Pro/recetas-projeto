@@ -30,7 +30,9 @@ export const ModalReceita = ({
 
   const obtenerRecetasActualizadas = async () => {
     try {
-      const response = await fetch("http://localhost:80/api/receitas");
+      const response = await fetch(
+        `${process.env.REACT_APP_API_URL}/api/receitas`
+      );
       if (!response.ok) {
         throw new Error("Error al obtener las recetas");
       }
@@ -68,7 +70,7 @@ export const ModalReceita = ({
       }
 
       const response = await fetch(
-        `http://localhost:80/api/receitas/${receita.id}`,
+        `${process.env.REACT_APP_API_URL}/api/receitas/${receita.id}`,
         {
           method: "PUT",
           headers: {
@@ -152,7 +154,7 @@ export const ModalReceita = ({
 
       console.log(newReceita);
       const updateResponse = await fetch(
-        `http://localhost:80/api/receitas/${receita.id}`,
+        `${process.env.REACT_APP_API_URL}/api/receitas/${receita.id}`,
         {
           method: "PUT",
           headers: {

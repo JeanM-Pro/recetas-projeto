@@ -9,7 +9,7 @@ export const ModalDelete = ({
   const handleDelete = async () => {
     try {
       const deleteResponse = await fetch(
-        `http://localhost:80/api/receitas/${receita.id}`,
+        `${process.env.REACT_APP_API_URL}/api/receitas/${receita.id}`,
         {
           method: "DELETE",
         }

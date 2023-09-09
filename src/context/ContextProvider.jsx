@@ -9,7 +9,7 @@ export const ContextProvider = ({ children }) => {
   const user = auth.currentUser;
 
   useEffect(() => {
-    fetch("http://localhost:80/api/usuarios")
+    fetch(`${process.env.REACT_APP_API_URL}/api/usuarios`)
       .then((response) => response.json())
       .then((data) => {
         // Comprobar si el usuario ya existe en la lista
@@ -37,7 +37,7 @@ export const ContextProvider = ({ children }) => {
           };
 
           // Realizar una solicitud POST para crear al nuevo usuario
-          fetch("http://localhost:80/api/usuarios", {
+          fetch(`${process.env.REACT_APP_API_URL}/api/usuarios`, {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
@@ -129,7 +129,7 @@ export const ContextProvider = ({ children }) => {
   console.log(usuarios);
 
   useEffect(() => {
-    fetch("http://localhost:80/api/receitas")
+    fetch(`${process.env.REACT_APP_API_URL}/api/receitas`)
       .then((response) => {
         if (!response.ok) {
           throw new Error("Error al obtener las recetas");

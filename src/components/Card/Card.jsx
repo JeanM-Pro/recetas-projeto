@@ -54,7 +54,7 @@ export const Card = ({ receita, setReceitas, receitas }) => {
 
       console.log(newReceita);
       const updateResponse = await fetch(
-        `http://localhost:80/api/receitas/${receita.id}`,
+        `${process.env.REACT_APP_API_URL}/api/receitas/${receita.id}`,
         {
           method: "PUT",
           headers: {
@@ -84,7 +84,7 @@ export const Card = ({ receita, setReceitas, receitas }) => {
   const redirectToUserProfile = () => {
     const userId = receita.userId;
     if (userId) {
-      const userProfileURL = `http://localhost:3000/user-profile/${userId}`;
+      const userProfileURL = `https://receitas-toti.web.app/user-profile/${userId}`;
       window.open(userProfileURL, "_blank");
     }
   };
