@@ -104,7 +104,7 @@ const UserProfile = () => {
               </div>
             </div>
             <div className="col cards-container-destacados">
-              <div className="recetas-header">Minhas Receitas</div>
+              <div className="recetas-header">Receitas</div>
               {recetasUsuario?.map((receita) => {
                 return (
                   <Card
