@@ -8,6 +8,7 @@ import { AddReceitaForm } from "./components/AddReceitaForm";
 import { Context } from "../../context/ContextProvider";
 import { auth } from "../../firebaseConfig/firebase";
 import { EditPhotoModal } from "./components/EditPhotoModal";
+import { Footer } from "../../components/Footer/Footer";
 
 export const UserPage = () => {
   const user = auth.currentUser;
@@ -278,6 +279,7 @@ export const UserPage = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 };

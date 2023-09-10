@@ -4,6 +4,7 @@ import "./favoritePage.css";
 import { Card } from "../../components/Card/Card";
 import { Context } from "../../context/ContextProvider";
 import { auth } from "../../firebaseConfig/firebase";
+import { Footer } from "../../components/Footer/Footer";
 
 export const FavoritesPage = () => {
   const { receitas, setReceitas } = useContext(Context);
@@ -64,6 +65,7 @@ export const FavoritesPage = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 };

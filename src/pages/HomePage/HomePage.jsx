@@ -3,6 +3,7 @@ import "./HomePageStyles.css";
 import { Navbar } from "../../components/NavBar/Navbar";
 import { Card } from "../../components/Card/Card";
 import { Context } from "../../context/ContextProvider";
+import { Footer } from "../../components/Footer/Footer";
 
 export const HomePage = () => {
   const { receitas, setReceitas, signout } = useContext(Context);
@@ -80,6 +81,7 @@ export const HomePage = () => {
           </svg>
         </div>
       </div>
+      <Footer />
     </>
   );
 };

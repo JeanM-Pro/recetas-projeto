@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { Context } from "../../context/ContextProvider";
 import { Navbar } from "../NavBar/Navbar";
 import { Card } from "../Card/Card";
+import { Footer } from "../Footer/Footer";
 
 const UserProfile = () => {
   const {
@@ -77,6 +78,7 @@ const UserProfile = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 };

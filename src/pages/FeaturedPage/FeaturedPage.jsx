@@ -4,6 +4,7 @@ import "./FeaturedPage.css";
 import { Card } from "../../components/Card/Card";
 import { ChefCard } from "./components/ChefCard";
 import { Context } from "../../context/ContextProvider";
+import { Footer } from "../../components/Footer/Footer";
 
 export const FeaturedPage = () => {
   const {
@@ -62,6 +63,7 @@ export const FeaturedPage = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 };
