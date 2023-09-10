@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import "./Card.css";
 import { auth } from "../../firebaseConfig/firebase";
 import { ModalReceita } from "../ModalReceita/ModalReceita";
+import { Context } from "../../context/ContextProvider";
 
 export const Card = ({ receita, setReceitas, receitas }) => {
+  const { newName } = useContext(Context);
   const user = auth.currentUser;
   const { favoritedUsers } = receita;
   const isUserFavorite = favoritedUsers.includes(user.uid);
@@ -52,7 +54,6 @@ export const Card = ({ receita, setReceitas, receitas }) => {
 
       setReceitas(updatedReceitas);
 
-      console.log(newReceita);
       const updateResponse = await fetch(
         `${process.env.REACT_APP_API_URL}/api/receitas/${receita.id}`,
         {
@@ -72,13 +73,6 @@ export const Card = ({ receita, setReceitas, receitas }) => {
     } catch (error) {
       console.error("Error al marcar la receta como favorita:", error);
     }
-  };
-
-  const capitalizarPalabras = (str) => {
-    return str
-      .split(" ")
-      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-      .join(" ");
   };
 
   const redirectToUserProfile = () => {
@@ -139,7 +133,7 @@ export const Card = ({ receita, setReceitas, receitas }) => {
             <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4Zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10Z" />
           </svg>
           <p className="chef" onClick={redirectToUserProfile}>
-            {capitalizarPalabras(receita.userName)}
+            {newName(receita.userName)}
           </p>
         </div>
 
@@ -239,7 +233,8 @@ export const Card = ({ receita, setReceitas, receitas }) => {
             setIsLike={setIsLike}
             isDisLike={isDisLike}
             setIsDisLike={setIsDisLike}
-            capitalizarPalabras={capitalizarPalabras}
+            capitalizarPalabras={newName}
+            redirectToUserProfile={redirectToUserProfile}
           />
         )}
       </div>

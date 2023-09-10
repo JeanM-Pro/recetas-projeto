@@ -14,8 +14,6 @@ export const FeaturedPage = () => {
     compararReceitas,
   } = useContext(Context);
 
-  console.log(promediosUsuarios);
-
   return (
     <>
       <Navbar />
@@ -36,6 +34,7 @@ export const FeaturedPage = () => {
                   return (
                     <ChefCard
                       key={c.userId}
+                      userId={c.userId}
                       userName={c.userName}
                       photoURL={c.userImage}
                       promedioUsuario={c.promedioUsuario}

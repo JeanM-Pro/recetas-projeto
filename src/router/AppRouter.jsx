@@ -11,7 +11,6 @@ import UserProfile from "../components/UserProfile/UserProfile";
 
 export const AppRouter = () => {
   const [user, setUser] = useState(null);
-  console.log(process.env.REACT_APP_API_URL);
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((authUser) => {

@@ -1,12 +1,24 @@
 import React, { createContext, useEffect, useState } from "react";
 import { auth } from "../firebaseConfig/firebase";
+import { signOut } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
 
 const Context = createContext();
 
 export const ContextProvider = ({ children }) => {
   const [receitas, setReceitas] = useState([]);
   const [usuarios, setUsuarios] = useState([]);
-  const user = auth.currentUser;
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      setUser(user);
+    });
+
+    return () => {
+      unsubscribe();
+    };
+  }, []);
 
   useEffect(() => {
     fetch(`${process.env.REACT_APP_API_URL}/api/usuarios`)
@@ -126,8 +138,6 @@ export const ContextProvider = ({ children }) => {
     return false;
   }
 
-  console.log(usuarios);
-
   useEffect(() => {
     fetch(`${process.env.REACT_APP_API_URL}/api/receitas`)
       .then((response) => {
@@ -159,6 +169,18 @@ export const ContextProvider = ({ children }) => {
     }
   };
 
+  const navigate = useNavigate();
+
+  const signout = async () => {
+    await signOut(auth)
+      .then(async () => {
+        navigate("/");
+      })
+      .catch((error) => {
+        console.log("Ha habido un error al cerrar sesion", error);
+      });
+  };
+
   return (
     <Context.Provider
       value={{
@@ -171,6 +193,7 @@ export const ContextProvider = ({ children }) => {
         usuarios,
         newName,
         formatearNumero,
+        signout,
       }}
     >
       {children}

@@ -1,25 +1,12 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import "./HomePageStyles.css";
 import { Navbar } from "../../components/NavBar/Navbar";
 import { Card } from "../../components/Card/Card";
-import { useNavigate } from "react-router-dom";
-import { auth } from "../../firebaseConfig/firebase";
-import { signOut } from "firebase/auth";
 import { Context } from "../../context/ContextProvider";
 
 export const HomePage = () => {
-  const { receitas, setReceitas } = useContext(Context);
-  const navigate = useNavigate();
-
-  const signout = async () => {
-    await signOut(auth)
-      .then(async () => {
-        navigate("/");
-      })
-      .catch((error) => {
-        console.log("Ha habido un error al cerrar sesion", error);
-      });
-  };
+  const { receitas, setReceitas, signout } = useContext(Context);
+  const [searchTerm, setSearchTerm] = useState("");
 
   return (
     <>
@@ -48,21 +35,29 @@ export const HomePage = () => {
               type="text"
               placeholder="Buscar receitas"
               className="input-search"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
             />
           </div>
 
           <div className="cards-container">
-            <div className="recetas-header">Todas as receitas</div>
-            {receitas?.map((receita) => {
-              return (
-                <Card
-                  key={receita.id}
-                  receita={receita}
-                  setReceitas={setReceitas}
-                  receitas={receitas}
-                />
-              );
-            })}
+            <div className="recetas-header">
+              Todas as receitas ({receitas.length})
+            </div>
+            {receitas
+              ?.filter((receita) =>
+                receita.title.toLowerCase().includes(searchTerm.toLowerCase())
+              )
+              .map((receita) => {
+                return (
+                  <Card
+                    key={receita.id}
+                    receita={receita}
+                    setReceitas={setReceitas}
+                    receitas={receitas}
+                  />
+                );
+              })}
           </div>
         </div>
         <div className="logout-container" onClick={signout}>

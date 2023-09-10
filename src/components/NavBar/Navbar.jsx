@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./NavBarStyles.css";
 import { NavLink, useNavigate } from "react-router-dom";
 import { auth } from "../../firebaseConfig/firebase";
+import "animate.css";
 
 export const Navbar = () => {
+  const [isNavbarVisible, setIsNavbarVisible] = useState(true);
   const user = auth.currentUser;
   const navigate = useNavigate();
   const goToHome = () => {
@@ -12,8 +14,34 @@ export const Navbar = () => {
   const goToProfilePage = () => {
     navigate("/perfil");
   };
+
+  useEffect(() => {
+    let prevScrollPos = window.scrollY;
+
+    const handleScroll = () => {
+      const currentScrollPos = window.scrollY;
+      const isScrolledDown = currentScrollPos > prevScrollPos;
+
+      setIsNavbarVisible(!isScrolledDown);
+
+      prevScrollPos = currentScrollPos;
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
-    <nav className="navbar navbar-expand-lg nav-bar">
+    <nav
+      className={`navbar navbar-expand-lg nav-bar ${
+        isNavbarVisible
+          ? "animate__animated animate__fadeInDown"
+          : "animate__fadeOutUp animate__animated"
+      }`}
+    >
       <div className="nav-content">
         <h2 onClick={goToHome} className="logo-navbar">
           SaborGourmet

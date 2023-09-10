@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Navbar } from "../../components/NavBar/Navbar";
 import "./favoritePage.css";
 import { Card } from "../../components/Card/Card";
@@ -7,6 +7,7 @@ import { auth } from "../../firebaseConfig/firebase";
 
 export const FavoritesPage = () => {
   const { receitas, setReceitas } = useContext(Context);
+  const [searchTerm, setSearchTerm] = useState("");
   const user = auth.currentUser;
 
   const favoriteRecipes = receitas.filter((receita) =>
@@ -37,21 +38,29 @@ export const FavoritesPage = () => {
               type="text"
               placeholder="Encontrar receitas"
               className="input-search"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
             />
           </div>
 
           <div className="cards-container">
-            <div className="recetas-header-favorites">Todas as receitas</div>
-            {favoriteRecipes?.map((receita) => {
-              return (
-                <Card
-                  key={receita.id}
-                  receita={receita}
-                  receitas={receitas}
-                  setReceitas={setReceitas}
-                />
-              );
-            })}
+            <div className="recetas-header-favorites">
+              {favoriteRecipes.length} receitas
+            </div>
+            {favoriteRecipes
+              ?.filter((receita) =>
+                receita.title.toLowerCase().includes(searchTerm.toLowerCase())
+              )
+              .map((receita) => {
+                return (
+                  <Card
+                    key={receita.id}
+                    receita={receita}
+                    receitas={receitas}
+                    setReceitas={setReceitas}
+                  />
+                );
+              })}
           </div>
         </div>
       </div>

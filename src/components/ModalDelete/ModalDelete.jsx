@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import { MoonLoader } from "react-spinners";
 
 export const ModalDelete = ({
   toggleModalDelete,
@@ -6,7 +7,10 @@ export const ModalDelete = ({
   setReceitas,
   receita,
 }) => {
+  const [isdeleting, setIsdeleting] = useState(false);
+
   const handleDelete = async () => {
+    setIsdeleting(true);
     try {
       const deleteResponse = await fetch(
         `${process.env.REACT_APP_API_URL}/api/receitas/${receita.id}`,
@@ -23,6 +27,7 @@ export const ModalDelete = ({
 
       const updatedReceitas = receitas.filter((r) => r.id !== receita.id);
       setReceitas(updatedReceitas);
+      setIsdeleting(false);
 
       // Realiza cualquier otra acción necesaria, como mostrar un mensaje al usuario
     } catch (error) {
@@ -37,13 +42,19 @@ export const ModalDelete = ({
         <h2>Excluir Receita</h2>
         <p>Tem certeza de que deseja excluir essa receita?</p>
         <div className="buttons-container">
-          <button type="button" class="btn btn-danger" onClick={handleDelete}>
-            Excluir
+          <button
+            disabled={isdeleting}
+            type="button"
+            class="btn btn-danger"
+            onClick={handleDelete}
+          >
+            {isdeleting ? <MoonLoader size={20} color="#ffffff" /> : " Excluir"}
           </button>
           <button
             type="button"
             onClick={toggleModalDelete}
             class="btn btn-secondary"
+            disabled={isdeleting}
           >
             Cancelar
           </button>

@@ -297,6 +297,23 @@
   font-weight: lighter;
 }
 
+.edit-redes-content {
+  height: 400px;
+}
+
+.add-redes-title {
+  text-align: center;
+}
+
+.title-input {
+  text-align: left;
+  margin-top: 8px;
+}
+
+.edit-redes-buttons {
+  margin-top: 16px;
+}
+
 /* Naranja Cálido: #FFA500
 Verde Oliva: #808000
 Rojo Tomate: #FF6347

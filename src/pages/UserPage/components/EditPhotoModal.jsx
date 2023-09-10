@@ -40,7 +40,7 @@ export const EditPhotoModal = ({
             <button
               type="button"
               onClick={uploadImageToFirebase}
-              className="btn btn-primary"
+              className="btn btn-primary d-flex justify-content-center align-items-center"
               disabled={isEditingImage}
             >
               {isEditingImage ? (
