@@ -11,6 +11,7 @@
   transition: 0.2s;
   height: 170px;
   width: 100%;
+  object-fit: cover;
 }
 
 .card-img-top:hover {

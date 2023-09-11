@@ -47,6 +47,7 @@ export const LoginPage = ({ setUser, user }) => {
       setError(error.message);
     } finally {
       setIsSubmittingWithemail(false);
+      console.log(error);
     }
   };
 

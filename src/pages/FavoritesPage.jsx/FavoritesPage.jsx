@@ -46,8 +46,13 @@ export const FavoritesPage = () => {
 
           <div className="cards-container">
             <div className="recetas-header-favorites">
-              {favoriteRecipes.length} receitas
+              {`${favoriteRecipes.length} ${
+                favoriteRecipes.length < 2 ? "Receita" : "Receitas"
+              }`}
             </div>
+            {favoriteRecipes?.length === 0
+              ? "Ainda não adicionou receitas favoritas."
+              : null}
             {favoriteRecipes
               ?.filter((receita) =>
                 receita.title.toLowerCase().includes(searchTerm.toLowerCase())

@@ -28,7 +28,7 @@ export const Footer = () => {
       <div className="footer-information">
         ©2023 por Grupo 1 da Turma 33 da Toti.
         <div className="emails-footer-container">
-          {`antonioimbanajr92@gmail.com | norelysb99@gmail.com | jeancenteno54@gmail.com | borgesyumelys@gmail.com`}
+          <p>{`antonioimbanajr92@gmail.com | norelysb99@gmail.com | jeancenteno54@gmail.com | borgesyumelys@gmail.com`}</p>
         </div>
       </div>
     </div>

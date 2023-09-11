@@ -32,7 +32,6 @@ const UserProfile = () => {
   }
 
   const usuario = usuarios.find((u) => u.userId === userId);
-  console.log(usuario);
 
   return (
     <>
@@ -63,7 +62,9 @@ const UserProfile = () => {
               <span className="puntuacion-media">Pontuação média</span>
             </div>
             <div className="col cards-container-destacados">
-              <div className="recetas-header">{`${recetasUsuario.length} Receitas`}</div>
+              <div className="recetas-header">{`${recetasUsuario.length} ${
+                recetasUsuario.length < 2 ? "Receita" : "Receitas"
+              }`}</div>
               {recetasUsuario?.map((receita) => {
                 return (
                   <Card
