@@ -26,7 +26,7 @@ export const FeaturedPage = () => {
             Descubra as receitas e chefs mais destacados!!
           </h2>
           <div className="cards-container-featured row gap-4">
-            <div className="col-3 chefs-container">
+            <div className="col-3 col-lg-3 col-md-5 col-xs-10 col-sm-8 chefs-container">
               <div className="recetas-header">Chefs em Destaque</div>
               {promediosUsuarios
                 ?.sort((a, b) => b.promedioUsuario - a.promedioUsuario)

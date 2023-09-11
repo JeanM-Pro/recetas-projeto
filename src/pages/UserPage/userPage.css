@@ -314,20 +314,19 @@
   margin-top: 16px;
 }
 
-/* Naranja Cálido: #FFA500
-Verde Oliva: #808000
-Rojo Tomate: #FF6347
-Amarillo Maíz: #FFD700
-Azul Cielo: #87CEEB
-Verde Salvia: #8FBC8F
-Marrón Chocolate: #D2691E
-Blanco Crema: #FFF8DC */
+@media (max-width: 726px) {
+  .title-user {
+    margin-top: 0;
+  }
 
-/* 
-font-family: 'Lobster', cursive;
-font-family: 'Montserrat', sans-serif;
-font-family: 'Open Sans', sans-serif;
-font-family: 'Playfair Display', serif;
-font-family: 'Roboto', sans-serif;
-font-family: 'Work Sans', sans-serif; 
-*/
+  .body-user {
+    margin-top: 100px;
+    padding-bottom: 32px;
+  }
+}
+
+@media (max-width: 582px) {
+  .user-container {
+    width: 100%;
+  }
+}

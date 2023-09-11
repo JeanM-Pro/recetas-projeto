@@ -213,7 +213,7 @@ export const UserPage = () => {
         <h1 className="title-user">Minhas Receitas</h1>
         <div className="body-user">
           <div className="cards-container-featured gap-4 row">
-            <div className="col-3 user-container">
+            <div className="col-3 col-lg-3 col-md-5 col-xs-10 col-sm-8 user-container">
               <div className="recetas-header">Meu Perfil</div>
               <div className="profile-image-container">
                 <img
