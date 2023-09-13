@@ -45,7 +45,7 @@ export const ModalDelete = ({
           <button
             disabled={isdeleting}
             type="button"
-            class="btn btn-danger"
+            class="btn btn-danger btn-delete-modal"
             onClick={handleDelete}
           >
             {isdeleting ? <MoonLoader size={20} color="#ffffff" /> : " Excluir"}

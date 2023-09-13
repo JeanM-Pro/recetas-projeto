@@ -20,16 +20,7 @@ const UserProfile = () => {
     receita.userId.includes(userId)
   );
 
-  const { numeroDeVotos, promedioUsuario } =
-    obtenerPromedioUsuarioPorUid(userId);
-
-  let promedio;
-
-  if (numeroDeVotos > 0) {
-    promedio = (promedioUsuario * 10) / numeroDeVotos;
-  } else {
-    promedio = 0;
-  }
+  const { promedioUsuario } = obtenerPromedioUsuarioPorUid(userId);
 
   const usuario = usuarios.find((u) => u.userId === userId);
 
@@ -57,9 +48,9 @@ const UserProfile = () => {
               <span className="email-profile">{usuario.correo}</span>
 
               <span className="puntuacion-perfil">
-                {formatearNumero(promedio)}/10
+                {formatearNumero(promedioUsuario)}
               </span>
-              <span className="puntuacion-media">Pontuação média</span>
+              <span className="puntuacion-media">Pontuação</span>
             </div>
             <div className="col cards-container-destacados">
               <div className="recetas-header">{`${recetasUsuario.length} ${

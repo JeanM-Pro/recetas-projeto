@@ -1,23 +1,27 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import "../FeaturedPage.css";
 import { Context } from "../../../context/ContextProvider";
 
-export const ChefCard = ({
-  userName,
-  photoURL,
-  promedioUsuario,
-  numeroDeVotos,
-  userId,
-}) => {
+export const ChefCard = ({ userName, photoURL, promedioUsuario, userId }) => {
   const { newName } = useContext(Context);
 
-  let promedio;
+  const [user, setUser] = useState(null);
 
-  if (numeroDeVotos > 0) {
-    promedio = (promedioUsuario * 10) / numeroDeVotos;
-  } else {
-    promedio = 0;
-  }
+  useEffect(() => {
+    fetch(`${process.env.REACT_APP_API_URL}/api/usuarios/${userId}`)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Error al obtener el usuario");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        setUser(data);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  }, [userId]);
 
   function formatearNumero(numero) {
     const decimalString = numero.toString().split(".")[1];
@@ -37,15 +41,17 @@ export const ChefCard = ({
 
   return (
     <div className="chef-card-container" onClick={redirectToUserProfile}>
-      <img
-        src={photoURL ? photoURL : "https://i.ibb.co/3crnvk2/1077114.jpg"}
-        alt="imagen do usuario"
-        className="chef-imagen-card"
-      />
+      <div className="chef-imagen-card-container">
+        <img
+          src={user?.img ? user?.img : "https://i.ibb.co/3crnvk2/1077114.jpg"}
+          alt="imagen do usuario"
+          className="chef-imagen-card"
+        />
+      </div>
       <div className="name-points-container">
         <p className="chef-name-card">{newName(userName)}</p>
         <p className="points-chef-card">
-          Pontuação: <b>{formatearNumero(promedio)}/10</b>
+          Pontuação: <b>{formatearNumero(promedioUsuario)}</b>
         </p>
       </div>
     </div>

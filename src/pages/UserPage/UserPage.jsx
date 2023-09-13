@@ -67,6 +67,23 @@ export const UserPage = () => {
           await updateProfile(user, {
             photoURL: downloadURL,
           });
+          const updateUserRequest = await fetch(
+            `${process.env.REACT_APP_API_URL}/api/usuarios/${user.uid}`,
+            {
+              method: "PUT",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                img: downloadURL,
+              }),
+            }
+          );
+          if (updateUserRequest.ok) {
+            console.log("Información del usuario actualizada con éxito");
+          } else {
+            console.error("Error al actualizar la información del usuario");
+          }
           console.log("photoURL actualizada con éxito");
         }
 

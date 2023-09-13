@@ -67,6 +67,9 @@ export const FavoritesPage = () => {
                   />
                 );
               })}
+            {receitas?.filter((receita) =>
+              receita.title.toLowerCase().includes(searchTerm.toLowerCase())
+            ).length === 0 && <p>Nenhuma receita encontrada.</p>}
           </div>
         </div>
       </div>

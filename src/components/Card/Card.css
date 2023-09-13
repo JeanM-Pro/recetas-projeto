@@ -7,6 +7,12 @@
   height: 24rem;
 }
 
+.btn-delete-modal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .card-img-top {
   transition: 0.2s;
   height: 170px;

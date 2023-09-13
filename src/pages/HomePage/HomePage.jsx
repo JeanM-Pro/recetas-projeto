@@ -59,6 +59,9 @@ export const HomePage = () => {
                   />
                 );
               })}
+            {receitas?.filter((receita) =>
+              receita.title.toLowerCase().includes(searchTerm.toLowerCase())
+            ).length === 0 && <p>Nenhuma receita encontrada.</p>}
           </div>
         </div>
         <div className="logout-container" onClick={signout}>
