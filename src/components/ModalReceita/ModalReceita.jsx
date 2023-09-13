@@ -153,7 +153,6 @@ export const ModalReceita = ({
 
       setReceitas(updatedReceitas);
 
-      console.log(newReceita);
       const updateResponse = await fetch(
         `${process.env.REACT_APP_API_URL}/api/receitas/${receita.id}`,
         {
