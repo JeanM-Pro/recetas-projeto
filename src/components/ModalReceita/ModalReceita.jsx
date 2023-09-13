@@ -269,7 +269,7 @@ export const ModalReceita = ({
 
           <h4 className="ingredients-subtitle">Ingredientes</h4>
           <ul className="lista">
-            {receita.ingredients.split(",").map((ingredient, index) => (
+            {receita.ingredients.split("\n").map((ingredient, index) => (
               <li key={index}>
                 {ingredient.trim().charAt(0).toUpperCase() +
                   ingredient.trim().slice(1)}
@@ -278,7 +278,7 @@ export const ModalReceita = ({
           </ul>
           <h4>Passos</h4>
           <ol>
-            {receita.steps.split(",").map((step, index) => (
+            {receita.steps.split("\n").map((step, index) => (
               <li key={index}>
                 {step.trim().charAt(0).toUpperCase() + step.trim().slice(1)}
               </li>

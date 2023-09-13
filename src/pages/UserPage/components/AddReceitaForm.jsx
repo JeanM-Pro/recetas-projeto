@@ -77,7 +77,7 @@ export const AddReceitaForm = ({
 
           <label className="label-add-receita-form" htmlFor="ingredients">
             Ingredientes:{" "}
-            <span className="instruction">(separe com vírgulas)</span>
+            <span className="instruction">(Separe por quebras de linha)</span>
           </label>
           <textarea
             disabled={isAddingReceita}
@@ -92,7 +92,8 @@ export const AddReceitaForm = ({
           />
 
           <label className="label-add-receita-form" htmlFor="steps">
-            Passos: <span className="instruction">(separe com vírgulas)</span>
+            Passos:{" "}
+            <span className="instruction">(Separe por quebras de linha)</span>
           </label>
           <textarea
             disabled={isAddingReceita}
