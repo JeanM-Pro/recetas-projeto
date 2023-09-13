@@ -173,17 +173,7 @@ export const UserPage = () => {
 
   // Calcular promedio de usuario
 
-  const { numeroDeVotos, promedioUsuario } = obtenerPromedioUsuarioPorUid(
-    user.uid
-  );
-
-  let promedio;
-
-  if (numeroDeVotos > 0) {
-    promedio = (promedioUsuario * 10) / numeroDeVotos;
-  } else {
-    promedio = 0;
-  }
+  const { promedioUsuario } = obtenerPromedioUsuarioPorUid(user.uid);
 
   return (
     <>
@@ -267,7 +257,7 @@ export const UserPage = () => {
               <span className="email-profile">{user.email}</span>
 
               <span className="puntuacion-perfil">
-                {formatearNumero(promedio)}/10
+                {formatearNumero(promedioUsuario)}
               </span>
               <span className="puntuacion-media">Pontuação média</span>
               <button
