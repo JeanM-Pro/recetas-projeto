@@ -16,10 +16,10 @@ export const UserPage = () => {
   const {
     receitas,
     setReceitas,
-    obtenerPromedioUsuarioPorUid,
     newName,
     formatearNumero,
     signout,
+    promediosUsuarios,
   } = useContext(Context);
   const [showModalImagen, setShowModalImagen] = useState(false);
   const [isAddingReceita, setIsAddingReceita] = useState(false);
@@ -172,9 +172,16 @@ export const UserPage = () => {
   );
 
   // Calcular promedio de usuario
+  let promedioUsuario;
 
-  const { promedioUsuario } = obtenerPromedioUsuarioPorUid(user.uid);
-
+  const usuarioEncontrado = promediosUsuarios.find(
+    (usuario) => usuario.userId === user.uid
+  );
+  if (usuarioEncontrado) {
+    promedioUsuario = usuarioEncontrado.promedioUsuario;
+  } else {
+    promedioUsuario = 0;
+  }
   return (
     <>
       <Navbar />
@@ -256,9 +263,7 @@ export const UserPage = () => {
               </span>
               <span className="email-profile">{user.email}</span>
 
-              <span className="puntuacion-perfil">
-                {formatearNumero(promedioUsuario)}
-              </span>
+              <span className="puntuacion-perfil">{promedioUsuario}</span>
               <span className="puntuacion-media">Pontuação média</span>
               <button
                 onClick={signout}

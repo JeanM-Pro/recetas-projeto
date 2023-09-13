@@ -9,6 +9,7 @@ export const ContextProvider = ({ children }) => {
   const [receitas, setReceitas] = useState([]);
   const [usuarios, setUsuarios] = useState([]);
   const [user, setUser] = useState(null);
+  console.log(usuarios);
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
