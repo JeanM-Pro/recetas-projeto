@@ -13,14 +13,8 @@ import { Footer } from "../../components/Footer/Footer";
 export const UserPage = () => {
   const user = auth.currentUser;
 
-  const {
-    receitas,
-    setReceitas,
-    newName,
-    formatearNumero,
-    signout,
-    promediosUsuarios,
-  } = useContext(Context);
+  const { receitas, setReceitas, newName, signout, promediosUsuarios } =
+    useContext(Context);
   const [showModalImagen, setShowModalImagen] = useState(false);
   const [isAddingReceita, setIsAddingReceita] = useState(false);
   const [selectedFile, setSelectedFile] = useState(null);

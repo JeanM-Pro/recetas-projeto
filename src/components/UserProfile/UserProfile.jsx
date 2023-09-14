@@ -13,6 +13,7 @@ const UserProfile = () => {
     obtenerPromedioUsuarioPorUid,
     receitas,
     setReceitas,
+    promediosUsuarios,
   } = useContext(Context);
   const { userId } = useParams();
 
@@ -21,31 +22,31 @@ const UserProfile = () => {
   );
 
   const { promedioUsuario } = obtenerPromedioUsuarioPorUid(userId);
-
-  const usuario = usuarios.find((u) => u.userId === userId);
+  const usuarioEmail = usuarios?.find((u) => u.userId === userId);
+  const usuario = promediosUsuarios.find((u) => u.userId === userId);
 
   return (
     <>
       <Navbar />
       <div className="header-background-userpage"></div>
       <div className="perfil-container">
-        <h1 className="title-user">Chef. {newName(usuario.nombre)}</h1>
+        <h1 className="title-user">Chef. {newName(usuario?.userName)}</h1>
         <div className="body-user">
           <div className="cards-container-featured gap-4 row">
             <div className="col-3 user-container">
               <div className="recetas-header">Perfil</div>
               <div className="profile-image-container">
                 <img
-                  src={usuario.img}
+                  src={usuario.userImage}
                   alt="profile imagen"
                   className="profile-image"
                 />
               </div>
 
               <span className="username-profile">
-                {newName(usuario.nombre)}
+                {newName(usuario?.userName)}
               </span>
-              <span className="email-profile">{usuario.correo}</span>
+              <span className="email-profile">{usuarioEmail.correo}</span>
 
               <span className="puntuacion-perfil">
                 {formatearNumero(promedioUsuario)}

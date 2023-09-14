@@ -53,7 +53,7 @@ export const ModalDelete = ({
           <button
             type="button"
             onClick={toggleModalDelete}
-            class="btn btn-secondary"
+            className="btn btn-secondary"
             disabled={isdeleting}
           >
             Cancelar

@@ -40,12 +40,6 @@ export const ContextProvider = ({ children }) => {
             img: user.photoURL
               ? user.photoURL
               : "https://i.ibb.co/3crnvk2/1077114.jpg",
-            redesSociales: {
-              facebook: "",
-              twitter: "",
-              instagram: "",
-              linkedin: "",
-            },
           };
 
           // Realizar una solicitud POST para crear al nuevo usuario
