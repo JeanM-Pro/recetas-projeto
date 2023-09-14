@@ -15,3 +15,6 @@ Esse projeto foi desenvolvido com React.js, Bootstrap, Node e Express, para a au
 Para visualizar a página original, acesse esse link
 
 https://receitas-toti.web.app/
+
+Repositorio do servidor:
+https://github.com/JeanM-Pro/receitas-app-backend/tree/main
