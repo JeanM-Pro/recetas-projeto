@@ -4,10 +4,30 @@ import { Navbar } from "../../components/NavBar/Navbar";
 import { Card } from "../../components/Card/Card";
 import { Context } from "../../context/ContextProvider";
 import { Footer } from "../../components/Footer/Footer";
+import { Pagination } from "../../components/Pagination/Pagination";
 
 export const HomePage = () => {
   const { receitas, setReceitas, signout } = useContext(Context);
   const [searchTerm, setSearchTerm] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+  const [recipesPerPage] = useState(20);
+
+  const paginate = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+
+  // Filtrar las recetas basadas en la búsqueda
+  const filteredRecipes = receitas.filter((receita) =>
+    receita.title.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  // Calcular los índices de las recetas para la página actual
+  const indexOfLastRecipe = currentPage * recipesPerPage;
+  const indexOfFirstRecipe = indexOfLastRecipe - recipesPerPage;
+  const currentRecipes = filteredRecipes.slice(
+    indexOfFirstRecipe,
+    indexOfLastRecipe
+  );
 
   return (
     <>
@@ -43,25 +63,27 @@ export const HomePage = () => {
 
           <div className="cards-container">
             <div className="recetas-header">
-              Todas as receitas ({receitas.length})
+              Todas as receitas ({filteredRecipes.length})
             </div>
-            {receitas
-              ?.filter((receita) =>
-                receita.title.toLowerCase().includes(searchTerm.toLowerCase())
-              )
-              .map((receita) => {
-                return (
-                  <Card
-                    key={receita.id}
-                    receita={receita}
-                    setReceitas={setReceitas}
-                    receitas={receitas}
-                  />
-                );
-              })}
-            {receitas?.filter((receita) =>
-              receita.title.toLowerCase().includes(searchTerm.toLowerCase())
-            ).length === 0 && <p>Nenhuma receita encontrada.</p>}
+            {currentRecipes.length > 0 ? (
+              currentRecipes.map((receita) => (
+                <Card
+                  key={receita.id}
+                  receita={receita}
+                  setReceitas={setReceitas}
+                  receitas={receitas}
+                />
+              ))
+            ) : (
+              <p>Nenhuma receita encontrada.</p>
+            )}
+            <div className="w-100 d-flex align-items-center justify-content-end">
+              <Pagination
+                currentPage={currentPage}
+                totalPages={Math.ceil(filteredRecipes.length / recipesPerPage)}
+                onPageChange={paginate}
+              />
+            </div>
           </div>
         </div>
         <div className="logout-container" onClick={signout}>

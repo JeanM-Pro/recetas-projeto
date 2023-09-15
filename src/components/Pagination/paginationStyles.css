@@ -1,0 +1,48 @@
+.controls-pagination-container {
+  display: flex;
+  align-items: center;
+}
+
+.button-left {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  margin-right: 8px;
+  border: none;
+  background-color: rgb(102, 101, 100);
+  color: white;
+  padding-right: 8px;
+}
+
+.button-left:hover {
+  background-color: rgb(141, 140, 139);
+}
+
+.button-left[disabled] {
+  background-color: rgb(177, 175, 174);
+}
+
+.button-right {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  margin-left: 8px;
+  border: none;
+  background-color: rgb(102, 101, 100);
+  color: white;
+  padding-left: 8px;
+}
+
+.button-right:hover {
+  background-color: rgb(141, 140, 139);
+}
+
+.button-right[disabled] {
+  background-color: rgb(177, 175, 174);
+}
