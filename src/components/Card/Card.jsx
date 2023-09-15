@@ -152,7 +152,11 @@ export const Card = ({ receita, setReceitas, receitas }) => {
             </svg>
           </span>
           <p className="duracion">
-            {` ${receita.duration} ${receita.durationUnit}`}
+            {` ${receita.duration} ${
+              receita.duration === "1"
+                ? receita.durationUnit.slice(0, -1)
+                : receita.durationUnit
+            }`}
           </p>
         </div>
 

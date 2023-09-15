@@ -271,16 +271,22 @@ export const UserPage = () => {
               <div className="recetas-header">
                 Minhas Receitas ({myReceitas.length})
               </div>
-              {myReceitas?.map((receita) => {
-                return (
-                  <Card
-                    key={receita.id}
-                    setReceitas={setReceitas}
-                    receitas={receitas}
-                    receita={receita}
-                  />
-                );
-              })}
+              {myReceitas?.length === 0 ? (
+                <span className="mt-2">
+                  Você ainda não tem receitas adicionadas.
+                </span>
+              ) : (
+                myReceitas.map((receita) => {
+                  return (
+                    <Card
+                      key={receita.id}
+                      setReceitas={setReceitas}
+                      receitas={receitas}
+                      receita={receita}
+                    />
+                  );
+                })
+              )}
             </div>
           </div>
         </div>
