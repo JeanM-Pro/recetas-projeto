@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "./registerPageStyles.css";
 import { NavLink, useNavigate } from "react-router-dom";
 import { auth } from "../../firebaseConfig/firebase";
@@ -20,12 +22,14 @@ export const RegisterPage = ({ setUser }) => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [senhaError, setSenhaError] = useState(null);
   const [error, setError] = useState(null);
+  const [, setToastError] = useState(null);
 
   const handleRegister = async (e) => {
     e.preventDefault();
     try {
       setIsSubmitting(true);
       setSenhaError(null);
+
       if (password !== confirmPassword) {
         setSenhaError("As senhas devem ser iguais");
         setIsSubmitting(false);
@@ -53,8 +57,13 @@ export const RegisterPage = ({ setUser }) => {
       setIsSubmitting(false);
       navigate("/home");
     } catch (error) {
+      if (error.code === "auth/email-already-in-use") {
+        setToastError("O email já está em uso.");
+        toast.error("O email já está em uso.");
+      } else {
+        setError(error.message);
+      }
       setError(error.message);
-      console.log(error);
       setIsSubmitting(false);
     }
   };
@@ -75,6 +84,7 @@ export const RegisterPage = ({ setUser }) => {
 
   return (
     <div className="register-container">
+      <ToastContainer />
       <h5 className="title-register">
         Cadastre-se para descobrir as <br /> receitas de culinária{" "}
         <span className="mais-deliciosas-text">mais deliciosas</span>

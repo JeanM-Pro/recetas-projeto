@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "./loginPageStyles.css";
 import { NavLink, useNavigate } from "react-router-dom";
 import { auth } from "../../firebaseConfig/firebase";
@@ -17,7 +19,7 @@ export const LoginPage = ({ setUser, user }) => {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState(null);
+  const [, setError] = useState(null);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -44,10 +46,10 @@ export const LoginPage = ({ setUser, user }) => {
       setUser(userCredential.user);
       navigate("/home");
     } catch (error) {
+      toast.error("O email ou senha são incorretos.");
       setError(error.message);
     } finally {
       setIsSubmittingWithemail(false);
-      console.log(error);
     }
   };
 
@@ -162,6 +164,7 @@ export const LoginPage = ({ setUser, user }) => {
           </p>
         </div>
       </form>
+      <ToastContainer />
     </div>
   );
 };
